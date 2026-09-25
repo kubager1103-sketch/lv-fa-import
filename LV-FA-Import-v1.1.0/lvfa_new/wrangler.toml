@@ -1,0 +1,27 @@
+name = "lv-fa-import"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lvfa_import"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "IMPORT_BUCKET"
+bucket_name = "lv-fa-import"
+
+[vars]
+APP_NAME = "Letecký vykřičník & FlyAlert"
+PUBLIC_BASE_URL = "https://import.leteckyvykricnik.cz"
+ADMIN_EMAIL = "letecky.vykricnik@gmail.com"
+EMAIL_FROM = "import@leteckyvykricnik.cz"
+MAX_FILES = "30"
+MAX_FILE_MB = "25"
+GOOGLE_DRIVE_FOLDER_ID = "14OfUk90UfPR30JOC0Bmi8eGaWEnyWQ7y"
