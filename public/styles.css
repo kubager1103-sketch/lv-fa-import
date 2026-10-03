@@ -1,0 +1,1399 @@
+@font-face {
+  font-family: "Garet";
+  src: url("/assets/Garet-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: "Garet";
+  src: url("/assets/Garet-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+}
+
+root { --black:#000; --muted:#777; --line:#dedede; }
+* { box-sizing:border-box; }
+body { margin:0; background:#fff; color:#000; font-family:"Garet",Arial,sans-serif; }
+button,input { font:inherit; }
+.brand-logo { width:228px; height:auto; display:block; }
+.panel { background:#fff; border:1px solid #000; border-radius:12px; }
+.profile-button { width:48px; height:48px; border:0; border-radius:999px; background:#000; display:grid; place-items:center; cursor:pointer; transition:transform .15s ease; overflow:hidden; }
+.profile-button:hover { transform:scale(1.04); }
+.profile-button svg { width:28px; height:28px; }
+.gmail-toolbar { height:55px; padding:0 14px; border-bottom:1px solid #ececec; display:flex; align-items:center; justify-content:space-between; }
+.gmail-wordmark { font-family:Arial,sans-serif; font-size:18px; font-weight:500; }
+.icon-button { width:34px; height:34px; border:0; background:transparent; border-radius:999px; cursor:pointer; }
+.icon-button:hover { background:#f4f4f4; }
+.gmail-nav { width:100%; border:0; background:transparent; text-align:left; padding:9px 10px; border-radius:0 999px 999px 0; font-size:10px; cursor:pointer; }
+.gmail-nav:hover,.gmail-nav.active { background:#f0f0f0; font-weight:600; }
+.gmail-search,.database-search { width:100%; height:38px; border:1px solid #ddd; border-radius:7px; padding:0 12px; outline:none; font-size:10px; }
+.gmail-search:focus,.database-search:focus,.field input:focus { border-color:#000; }
+.gmail-list { background:#fff; }
+.gmail-row { width:100%; display:flex; gap:10px; align-items:center; padding:12px; border:0; border-bottom:1px solid #eee; cursor:pointer; text-align:left; background:#fff; }
+.gmail-row:hover { background:#f8f8f8; }
+.gmail-sender { font-size:10px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gmail-subject { font-size:10px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gmail-snippet { color:#888; font-size:9px; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mail-source { border:1px solid #ddd; border-radius:999px; padding:2px 5px; font-size:7px; color:#666; }
+.attachment-badge { border-radius:4px; background:#000; color:#fff; font-size:7px; padding:3px 5px; }
+.empty-gmail { padding:55px 25px; text-align:center; color:#888; font-size:10px; line-height:1.7; }
+.upload-zone { min-height:125px; border:1px dashed #aaa; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; cursor:pointer; transition:.15s ease; }
+.upload-zone:hover,.upload-zone.dragover,.upload-zone.selected { border-color:#000; background:#fafafa; }
+.field { display:block; }
+.field span { display:block; font-size:10px; font-weight:600; margin-bottom:6px; }
+.field input { width:100%; height:39px; border:1px solid #dedede; border-radius:7px; padding:0 11px; outline:none; font-size:10px; }
+.primary-button,.secondary-button { height:37px; border-radius:6px; padding:0 15px; font-size:10px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; }
+.primary-button { border:0; background:#000; color:#fff; }
+.primary-button:hover { background:#222; }
+.primary-button:disabled { opacity:.6; cursor:not-allowed; }
+.secondary-button { border:1px solid #ddd; background:#fff; color:#000; }
+.secondary-button:hover { border-color:#000; }
+.spinner { width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.eyebrow { color:#777; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.14em; }
+.source-banner { border:1px solid #dedede; border-radius:8px; padding:10px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.source-banner.hidden { display:none; }
+.analysis-card { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; overflow:hidden; border:1px solid #ddd; border-radius:8px; background:#ddd; }
+.analysis-card div { background:#fff; padding:9px 10px; display:flex; justify-content:space-between; gap:8px; font-size:9px; }
+.analysis-card span { color:#777; }
+.analysis-card strong { font-weight:600; text-align:right; }
+.attachment-card { border:1px solid #ddd; border-radius:8px; background:#fff; padding:8px; text-align:left; cursor:pointer; }
+.attachment-card:hover { border-color:#000; }
+.photo-card { overflow:hidden; border:1px solid #ddd; border-radius:10px; background:#fff; }
+.photo-image-wrap { display:block; background:#f3f3f3; }
+.photo-preview { aspect-ratio:1400/953; background:#f2f2f2; object-fit:cover; width:100%; display:block; }
+.photo-body { padding:12px; }
+.photo-title { min-width:0; font-size:11px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.photo-meta { margin-top:9px; display:grid; gap:5px; font-size:9px; color:#777; }
+.photo-meta div { display:flex; justify-content:space-between; gap:10px; }
+.photo-meta strong { color:#000; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.modal { position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.38); display:grid; place-items:center; padding:20px; }
+.modal-card { position:relative; width:min(760px,100%); max-height:90vh; overflow:auto; background:#fff; border:1px solid #000; border-radius:12px; padding:24px; }
+.modal-close { position:absolute; right:14px; top:10px; border:0; background:transparent; font-size:24px; cursor:pointer; }
+.modal.hidden { display:none; }
+.message-success { border-color:#b9dec4; background:#f1faf4; color:#1f6b37; }
+.message-error { border-color:#f0bcbc; background:#fff5f5; color:#9a2d2d; }
+
+
+.app-footer { margin-top:18px; padding:10px 2px 2px; font-size:8px; color:#777; text-align:left; }
+
+/* Gmail follow-up helpers */
+.gmail-filters { display:flex; gap:6px; padding:8px 10px; border-bottom:1px solid #eee; overflow-x:auto; background:#fff; }
+.gmail-filter { flex:0 0 auto; border:1px solid #ddd; border-radius:999px; padding:5px 9px; background:#fff; font-size:8px; font-weight:600; color:#555; cursor:pointer; }
+.gmail-filter:hover, .gmail-filter.active { border-color:#111; color:#111; background:#f7f7f7; }
+.gmail-star { color:#e5a900; margin-right:5px; font-size:11px; vertical-align:-1px; }
+.gmail-star-button { display:inline-block; margin-right:5px; font-size:13px; line-height:1; color:#b7b7b7; cursor:pointer; vertical-align:-1px; user-select:none; }
+.gmail-star-button.is-starred { color:#e5a900; }
+.gmail-star-button:focus-visible { outline:1px solid #111; outline-offset:2px; border-radius:2px; }
+.mail-waiting { display:inline-flex; border:1px solid #f1b55d; background:#fff7e8; color:#8a5200; border-radius:999px; padding:2px 6px; font-size:7px; font-weight:700; white-space:nowrap; }
+.mail-answered { display:inline-flex; border:1px solid #d8d8d8; background:#fafafa; color:#666; border-radius:999px; padding:2px 6px; font-size:7px; font-weight:600; white-space:nowrap; }
+
+.mail-status-toggle { cursor:pointer; user-select:none; transition:filter .15s ease, transform .15s ease; }
+.mail-status-toggle:hover { filter:brightness(.96); transform:translateY(-1px); }
+
+
+/* Database card actions */
+.copy-value {
+  cursor: copy;
+  transition: opacity .15s ease;
+}
+.copy-value:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.copy-value.copied {
+  opacity: .45;
+}
+
+.photo-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+}
+.photo-action {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+.photo-action:hover {
+  border-color: #111111;
+  background: #f7f7f7;
+  transform: translateY(-1px);
+}
+.photo-action:disabled {
+  opacity: .45;
+  cursor: wait;
+}
+.photo-action svg {
+  width: 15px;
+  height: 15px;
+}
+.photo-trash:hover {
+  background: #fff7f7;
+}
+
+
+/* Photo editor */
+.photo-edit:hover {
+  background: #f7f7ff;
+}
+.edit-photo-modal-card {
+  width: min(650px, 100%);
+}
+.edit-name-preview {
+  margin-top: 16px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fafafa;
+  display: grid;
+  gap: 4px;
+}
+.edit-name-preview span {
+  font-size: 8px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.edit-name-preview strong {
+  font-size: 10px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+
+/* V8 mobile layout */
+.field-wide { grid-column: 1 / -1; }
+.gmail-list { padding-bottom: 12px; scroll-padding-bottom: 12px; }
+
+@media (max-width:640px) {
+  .app-header-inner { min-height: 86px !important; }
+  .app-main { padding-top: 16px !important; }
+  .brand-logo { width:190px; }
+  .profile-button { width:44px; height:44px; }
+  .analysis-card { grid-template-columns:1fr; }
+
+  .photo-fields-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 12px 10px !important;
+  }
+  .photo-fields-grid .field span { font-size:8px; margin-bottom:5px; }
+  .photo-fields-grid .field input { height:37px; padding:0 9px; font-size:9px; }
+
+  #photoGrid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+  .photo-card { border-radius:9px; min-width:0; }
+  .photo-preview { aspect-ratio: 1400 / 953; }
+  .photo-body { padding:9px; }
+  .photo-title { display:none; }
+  .photo-meta { margin-top:0; gap:5px; font-size:7.5px; }
+  .photo-meta div { display:grid; gap:2px; }
+  .photo-meta span { font-size:7px; }
+  .photo-meta strong { white-space:normal; overflow:visible; text-overflow:clip; line-height:1.35; }
+  .photo-credit strong { font-size:8px; }
+  .photo-actions { gap:5px; margin-top:8px; padding-top:8px; }
+  .photo-action { width:27px; height:27px; border-radius:7px; }
+  .photo-action svg { width:13px; height:13px; }
+}
+
+.import-clear-button { height:32px; padding:0 12px; flex-shrink:0; }
+
+
+/* V9: Stories */
+.stories-toggle { display:flex; align-items:center; gap:10px; cursor:pointer; width:max-content; max-width:100%; }
+.stories-toggle input { position:absolute; opacity:0; pointer-events:none; }
+.stories-switch { width:34px; height:19px; border-radius:999px; background:#dedede; position:relative; flex:none; transition:.18s ease; }
+.stories-switch::after { content:""; position:absolute; width:15px; height:15px; left:2px; top:2px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.18); transition:.18s ease; }
+.stories-toggle input:checked + .stories-switch { background:#111; }
+.stories-toggle input:checked + .stories-switch::after { transform:translateX(15px); }
+.stories-toggle > span:last-child { display:grid; gap:1px; }
+.stories-toggle strong { font-size:10px; font-weight:600; }
+.stories-toggle small { font-size:8px; color:#888; }
+.database-tabs { display:flex; gap:3px; padding:3px; border:1px solid #e5e5e5; border-radius:9px; background:#fafafa; width:max-content; }
+.database-tab { border:0; background:transparent; padding:6px 11px; border-radius:6px; font-size:9px; color:#777; cursor:pointer; }
+.database-tab.active { background:#111; color:#fff; }
+
+
+/* V10: unified photo categories */
+.category-field { display:grid; gap:6px; }
+.category-label { font-size:9px; font-weight:600; }
+.category-tabs {
+  display:flex;
+  gap:3px;
+  padding:3px;
+  border:1px solid #e5e5e5;
+  border-radius:9px;
+  background:#fafafa;
+  width:max-content;
+  max-width:100%;
+}
+.category-tabs label { cursor:pointer; }
+.category-tabs input { position:absolute; opacity:0; pointer-events:none; }
+.category-tabs span {
+  display:block;
+  border-radius:6px;
+  padding:6px 11px;
+  font-size:9px;
+  color:#777;
+  transition:.15s ease;
+}
+.category-tabs input:checked + span { background:#111; color:#fff; }
+
+@media (max-width: 520px) {
+  .category-tabs { width:100%; }
+  .category-tabs label { flex:1; }
+  .category-tabs span { text-align:center; padding-left:6px; padding-right:6px; }
+}
+
+/* V10.5.3: compact full-bleed footer, flush with page bottom */
+.brand-footer-bar {
+  width: 100vw;
+  margin-top: 26px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 0;
+  background: linear-gradient(90deg, #000000 0%, #120A8F 100%);
+}
+
+.brand-footer-inner {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+.brand-footer-logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+/* LV is intentionally larger so its white lettering visually matches FA. */
+.brand-footer-logo-lv {
+  height: 23px;
+  max-width: 34%;
+}
+
+.brand-footer-logo-fa {
+  height: 18px;
+  max-width: 30%;
+}
+
+/* Make the gradient the actual visual end of the document. */
+html,
+body {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body > footer,
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.brand-footer-bar:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 639px) {
+  .brand-footer-bar {
+    margin-top: 22px;
+  }
+
+  .brand-footer-inner {
+    min-height: 50px;
+    padding: 0 18px;
+    gap: 14px;
+  }
+
+  .brand-footer-logo-lv {
+    height: 17px;
+    max-width: 38%;
+  }
+
+  .brand-footer-logo-fa {
+    height: 13px;
+    max-width: 33%;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-footer-inner {
+    min-height: 46px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .brand-footer-logo-lv {
+    height: 15px;
+  }
+
+  .brand-footer-logo-fa {
+    height: 11px;
+  }
+}
+
+
+/* V10.5.4: remove the Tailwind bottom padding from <main>.
+   The HTML uses `py-7`, which was leaving white space below the gradient. */
+.app-main {
+  padding-bottom: 0 !important;
+}
+
+/* Ensure the footer itself is the final painted area of the page. */
+.app-footer {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.brand-footer-bar {
+  display: block;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 639px) {
+  .app-main {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Gmail multi-attachment import (v10.6.1) */
+.attachment-use-one { display:block; width:100%; border:0; background:transparent; padding:0; text-align:left; cursor:pointer; }
+.attachment-select { cursor:pointer; user-select:none; }
+.attachment-card.is-selected { border-color:#000; box-shadow:0 0 0 1px #000 inset; }
+.attachment-actions button:disabled { opacity:.45; cursor:not-allowed; }
+
+
+/* V10.6.4 — compact "Odkaz autorovi" control */
+.author-link-box {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.author-link-toggle {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  color: #202020;
+  user-select: none;
+}
+
+.author-link-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.author-link-switch {
+  width: 30px;
+  height: 17px;
+  border-radius: 999px;
+  background: #d7d7d7;
+  position: relative;
+  transition: background .16s ease;
+}
+
+.author-link-switch::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.22);
+  transition: transform .16s ease;
+}
+
+.author-link-toggle input:checked + .author-link-switch {
+  background: #120A8F;
+}
+
+.author-link-toggle input:checked + .author-link-switch::after {
+  transform: translateX(13px);
+}
+
+.author-link-email {
+  flex: 1 1 220px;
+  max-width: 360px;
+}
+
+.photo-author-email {
+  order: -1;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.photo-author-email.copied {
+  background: #f1f1f1;
+  border-color: #111111;
+}
+
+/* V10.7 — optional photo note */
+.photo-note {
+  grid-column: 1 / -1;
+}
+.photo-note strong {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+
+/* V10.8 — data-saving pagination */
+.photo-load-more { display:block; margin:20px auto 4px; min-width:180px; }
+
+/* V10.8.1 — elegantnější tlačítko pro další výsledky */
+.photo-load-more {
+  appearance: none;
+  display: block;
+  width: fit-content;
+  min-width: 0;
+  margin: 22px auto 6px;
+  padding: 10px 18px;
+  border: 1px solid #d6d6d6;
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.photo-load-more:hover {
+  background: #f7f7f7;
+  border-color: #bdbdbd;
+}
+.photo-load-more:active {
+  transform: translateY(1px);
+}
+
+/* V10.8.2 — compact load-more + aligned mobile category tabs */
+.photo-load-more {
+  margin: 18px auto 4px;
+  padding: 7px 13px;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .database-tabs {
+    width: 100%;
+  }
+  .database-tab {
+    flex: 1;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .photo-load-more {
+    margin-top: 16px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 9px;
+  }
+}
+
+
+/* V10.8.4 — Garet Bold: content emphasis only */
+main h2,
+.eyebrow,
+.field span,
+.category-label,
+.primary-button,
+.secondary-button,
+.gmail-sender,
+.gmail-filter,
+.photo-title,
+.photo-meta strong,
+.analysis-card strong,
+.edit-name-preview strong,
+.stories-toggle strong,
+.author-link-toggle,
+.photo-load-more {
+  font-family: "Garet", Arial, sans-serif;
+  font-weight: 700;
+}
+
+/* Brand/header and copyright credit intentionally stay Regular. */
+header,
+header h1,
+header button,
+.app-footer {
+  font-weight: 400;
+}
+
+/* LV-FA Import design layer — based directly on LV-FA Photo Center / Authors */
+.app-header-shell { width:min(1280px,100%); margin:0 auto; padding:0 32px; }
+.app-header-title { position:absolute; left:50%; transform:translateX(-50%); margin:0; font-size:15px; font-weight:500; white-space:nowrap; }
+.app-main { max-width:1280px; margin:0 auto; padding:28px 32px 0; }
+.import-intro { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+.import-page-title { margin:5px 0 0; font-size:21px; line-height:1.2; font-weight:600; }
+.import-lead { margin:7px 0 0; color:#777; font-size:10px; line-height:1.6; max-width:720px; }
+.panel-title { margin:4px 0 0; font-size:18px; font-weight:600; }
+.import-panel { margin-top:20px; }
+.import-contact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 24px; }
+.import-contact-grid .field:last-child { grid-column:1 / -1; max-width:50%; }
+.upload-counter { font-size:9px; color:#777; font-weight:600; white-space:nowrap; }
+.import-choose-button { margin-top:14px; }
+.upload-zone { min-height:155px; border:1px dashed #aaa; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; cursor:pointer; transition:.15s ease; background:#fff; }
+.upload-zone:hover,.upload-zone.drag { border-color:#000; background:#fafafa; }
+.upload-arrow { font-size:24px; line-height:1; }
+.upload-zone strong { margin-top:6px; font-size:11px; font-weight:600; }
+.upload-zone small { margin-top:5px; color:#888; font-size:8px; }
+.photo-forms { display:grid; gap:12px; margin-top:18px; }
+.photo-card { overflow:hidden; border:1px solid #ddd; border-radius:10px; background:#fff; }
+.photo-card-head { min-height:42px; padding:10px 12px; border-bottom:1px solid #eee; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.photo-card-head strong { min-width:0; font-size:9px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.photo-row { display:grid; grid-template-columns:minmax(220px,34%) minmax(0,66%); gap:0; align-items:stretch; }
+.photo-thumb { aspect-ratio:1400/953; min-height:170px; background:#f3f3f3; border-radius:0; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.photo-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.photo-card-body { padding:18px; display:flex; align-items:center; }
+.photo-card-body .grid { width:100%; }
+.photo-card .field span { font-size:9px; }
+.photo-card .field input { height:39px; }
+.remove-photo { width:28px; height:28px; border:1px solid #ddd; border-radius:8px; background:#fff; color:#111; font-size:15px; line-height:1; cursor:pointer; display:grid; place-items:center; }
+.remove-photo:hover { border-color:#111; background:#f7f7f7; }
+.language-tabs { display:flex; gap:3px; padding:3px; border:1px solid #e5e5e5; border-radius:9px; background:#fafafa; width:max-content; flex:none; }
+.language-tab { border:0; background:transparent; padding:7px 12px; border-radius:6px; font-size:9px; color:#777; cursor:pointer; }
+.language-tab.active { background:#111; color:#fff; }
+.consent-box { margin-top:18px; padding-top:17px; border-top:1px solid #eee; }
+.consent-row { display:flex; align-items:flex-start; gap:10px; margin:0; font-size:9px; line-height:1.65; color:#333; cursor:pointer; }
+.consent-row input { width:17px; height:17px; margin:1px 0 0; flex:none; accent-color:#111; }
+.import-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+.import-submit { min-width:170px; }
+.login-box { width:min(560px,100%); margin:42px auto 0; }
+.login-panel { margin-top:20px; }
+.google-button { width:100%; }
+.login-email { margin:14px 0 0; font-size:9px; color:#777; }
+.google-button:before { content:'G'; font-weight:700; margin-right:8px; }
+.stats { display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 20px; }
+.stat { border:1px solid #ddd; border-radius:9px; padding:9px 12px; min-width:110px; background:#fff; }
+.stat b { font-size:15px; }
+.stat span { display:block; font-size:7px; color:#777; text-transform:uppercase; margin-top:2px; letter-spacing:.05em; }
+.admin-layout { display:grid; grid-template-columns:minmax(280px,.34fr) minmax(0,.66fr); gap:28px; align-items:start; }
+.submission-list { max-height:720px; overflow:auto; }
+.submission-row { width:100%; border:0; border-bottom:1px solid #eee; background:#fff; padding:14px 16px; text-align:left; cursor:pointer; display:block; }
+.submission-row:hover,.submission-row.active { background:#f8f8f8; }
+.submission-row strong { font-size:11px; font-weight:600; }
+.submission-meta { margin-top:4px; font-size:8px; color:#777; line-height:1.55; }
+.status { display:inline-flex; margin-top:7px; border:1px solid #ddd; border-radius:999px; padding:4px 7px; font-size:7px; text-transform:uppercase; font-weight:600; color:#555; background:#fff; }
+.status.READY_FOR_REVIEW,.status.IN_REVIEW { border-color:#d8c58a; background:#fffdf4; }
+.status.ARCHIVED { border-color:#b8d9c5; background:#f6fcf8; }
+.status.ARCHIVE_FAILED { border-color:#dca6a6; background:#fff7f7; }
+.admin-gallery { display:grid; gap:12px; margin-top:18px; }
+.review-card { border:1px solid #ddd; border-radius:10px; overflow:hidden; background:#fff; }
+.review-image { aspect-ratio:1400/953; background:#f3f3f3; overflow:hidden; }
+.review-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.review-body { padding:14px; }
+.review-body .grid { gap:12px 14px; }
+.review-buttons { display:flex; gap:7px; margin-top:14px; }
+.review-buttons button { flex:1; height:34px; border:1px solid #ddd; border-radius:7px; background:#fff; font-size:9px; font-weight:600; cursor:pointer; }
+.review-buttons button:hover { border-color:#111; }
+.review-buttons .selected-approve { border-color:#1f8f55; background:#f3fbf6; color:#1f6b43; }
+.review-buttons .selected-reject { border-color:#b73535; background:#fff6f6; color:#9a2d2d; }
+.review-note { width:100%; min-height:58px; margin-top:10px; border:1px solid #ddd; border-radius:7px; padding:8px 10px; resize:vertical; outline:none; font-size:9px; font-family:inherit; }
+.review-note:focus { border-color:#111; }
+.detail-empty { min-height:505px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.detail-empty h2 { margin:6px 0 0; font-size:19px; font-weight:600; }
+.detail-empty p { margin:7px 0 0; }
+.notice { border-radius:8px; padding:9px 11px; font-size:9px; line-height:1.55; }
+
+@media (max-width: 900px) {
+  .app-header-shell { padding:0 20px; }
+  .app-main { padding:22px 20px 0; }
+  .import-contact-grid { grid-template-columns:1fr; }
+  .import-contact-grid .field:last-child { grid-column:auto; max-width:none; }
+  .admin-layout { grid-template-columns:1fr; gap:16px; }
+  .submission-list { max-height:360px; }
+  .detail-empty { min-height:260px; }
+}
+@media (max-width: 640px) {
+  .app-header-shell { padding:0 18px; }
+  .app-header-inner { min-height:86px !important; }
+  .app-header-title { display:none; }
+  .brand-logo { width:190px; }
+  .profile-button { width:40px; height:40px; }
+  .profile-button svg { width:24px; height:24px; }
+  .app-main { padding:16px 18px 0; }
+  .import-intro { align-items:flex-start; flex-direction:column; gap:12px; }
+  .import-page-title { font-size:20px; }
+  .language-tabs { width:100%; }
+  .language-tab { flex:1; text-align:center; }
+  .panel-head { padding:16px; }
+  .panel-body { padding:16px; }
+  .photo-row { grid-template-columns:1fr; }
+  .photo-thumb { min-height:0; aspect-ratio:1400/953; }
+  .photo-card-body { padding:14px; }
+  .photo-card-body .grid { grid-template-columns:1fr; }
+  .import-actions .primary-button,.import-actions .secondary-button { flex:1; }
+  .admin-gallery { gap:10px; }
+  .review-body .grid { grid-template-columns:1fr; }
+  .brand-footer-inner { padding:0 18px; }
+}
+/* Structural helpers used by Import without depending on utility-class loading. */
+.hidden { display:none !important; }
+.app-header-inner { position:relative; display:flex; min-height:116px; align-items:center; justify-content:space-between; gap:24px; }
+.app-footer { margin-top:18px; padding:10px 2px 2px; font-size:8px; color:#777; text-align:left; }
+
+/* V1.4 — visual alignment with LV-FA Photo Center */
+.app-header-inner { min-height:116px; }
+.app-main {
+  max-width:1280px;
+  margin:0 auto;
+  padding:28px 20px 0 !important;
+}
+.panel-head {
+  padding:16px 24px;
+  border-bottom:1px solid #ececec;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.panel-body { padding:24px; }
+.import-panel { margin-top:0; }
+.import-contact-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.import-contact-grid .field:last-child { grid-column:auto; max-width:none; }
+.field span { margin-bottom:6px; }
+.upload-heading {
+  margin-top:28px;
+  padding-top:24px;
+  border-top:1px solid #ececec;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+}
+.upload-title { margin:4px 0 0; font-size:18px; line-height:1.2; font-weight:600; }
+.upload-zone {
+  min-height:132px;
+  margin-top:16px;
+  border:1px dashed #aaa;
+  border-radius:8px;
+  background:#fff;
+}
+.upload-zone strong { font-size:10px; }
+.upload-zone small { font-size:8px; }
+.upload-arrow { font-size:22px; }
+.import-choose-button { margin-top:12px; }
+.photo-forms {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.photo-card {
+  overflow:hidden;
+  border:1px solid #ddd;
+  border-radius:10px;
+  background:#fff;
+}
+.photo-thumb {
+  position:relative;
+  margin:10px 10px 0;
+  aspect-ratio:1400/953;
+  min-height:0;
+  border-radius:8px;
+  background:#f3f3f3;
+  overflow:hidden;
+}
+.photo-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.remove-photo {
+  position:absolute;
+  top:8px;
+  right:8px;
+  width:28px;
+  height:28px;
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:8px;
+  background:rgba(255,255,255,.94);
+  color:#111;
+  font-size:15px;
+  line-height:1;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.remove-photo:hover { border-color:#111; background:#fff; }
+.photo-card-body { padding:14px 16px 16px; }
+.photo-info { display:grid; gap:10px; }
+.photo-info-row {
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  font-size:9px;
+  line-height:1.4;
+}
+.photo-info-row span { color:#777; font-size:8px; }
+.photo-info-row strong {
+  min-width:0;
+  max-width:72%;
+  font-size:9px;
+  font-weight:600;
+  text-align:right;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.photo-info .field input { height:37px; }
+.consent-box { margin-top:24px; padding-top:18px; border-top:1px solid #ececec; }
+.consent-row { font-size:9px; }
+.import-actions { margin-top:18px; }
+.app-footer { margin-top:18px; }
+.header-actions {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  flex:0 0 auto;
+}
+.header-language {
+  display:flex;
+  gap:2px;
+  padding:3px;
+  border:1px solid #e5e5e5;
+  border-radius:9px;
+  background:#fafafa;
+}
+.header-language-button {
+  border:0;
+  background:transparent;
+  color:#777;
+  border-radius:6px;
+  min-width:34px;
+  height:28px;
+  padding:0 8px;
+  font-size:9px;
+  cursor:pointer;
+}
+.header-language-button.active { background:#111; color:#fff; }
+.header-login {
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 12px;
+  border:1px solid #ddd;
+  border-radius:7px;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.header-login:hover { border-color:#111; background:#f7f7f7; }
+
+@media (min-width:640px) {
+  .app-main { padding-left:32px !important; padding-right:32px !important; }
+}
+@media (max-width:900px) {
+  .import-contact-grid { grid-template-columns:1fr 1fr; }
+  .import-contact-grid .field:last-child { grid-column:1 / -1; }
+}
+@media (max-width:639px) {
+  .app-header-inner { min-height:86px !important; }
+  .brand-logo { width:190px; }
+  .header-actions { gap:6px; }
+  .header-language-button { min-width:30px; height:27px; padding:0 6px; }
+  .header-login { height:33px; padding:0 9px; }
+  .app-main { padding:16px 20px 0 !important; }
+  .panel-head { padding:16px; }
+  .panel-body { padding:16px; }
+  .import-contact-grid { grid-template-columns:1fr; gap:14px; }
+  .import-contact-grid .field:last-child { grid-column:auto; }
+  .upload-heading { margin-top:24px; padding-top:20px; }
+  .photo-forms { grid-template-columns:1fr; gap:12px; }
+  .photo-card-body { padding:13px 14px 15px; }
+}
+@media (max-width:430px) {
+  .brand-logo { width:164px; }
+  .header-login { padding:0 8px; }
+  .header-language { padding:2px; }
+  .header-language-button { min-width:27px; height:26px; font-size:8px; }
+  .header-login { font-size:8px; }
+}
+
+/* V1.5 — final public/admin layout refinements */
+.import-panel .panel-head {
+  border-bottom: 0;
+}
+.upload-heading {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+  margin-top: 30px !important;
+}
+.import-panel .panel-body {
+  padding-top: 4px;
+}
+.upload-zone {
+  min-height: 126px !important;
+  margin-top: 14px !important;
+  border-radius: 8px !important;
+}
+.import-choose-button { display:none !important; }
+
+/* Photo + metadata share one compact card, matching the Photo Center visual language. */
+.photo-card {
+  display: grid;
+  grid-template-columns: minmax(190px, 34%) minmax(0, 66%);
+  align-items: stretch;
+  min-width: 0;
+}
+.photo-thumb {
+  margin: 10px 0 10px 10px !important;
+  width: auto !important;
+  aspect-ratio: 4 / 3 !important;
+  min-height: 0 !important;
+  border-radius: 8px !important;
+  align-self: center;
+}
+.photo-card-body {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 16px 18px !important;
+}
+.photo-info { width: 100%; }
+.photo-info .field input { height: 38px; }
+
+/* Keep the public page horizontally identical to Photo Center. */
+.app-main {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 28px 32px 0 !important;
+}
+
+/* Admin: clean centered login, no decorative card border, footer at page bottom. */
+body:has(#loginView) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body:has(#loginView) .app-main {
+  width: 100%;
+  flex: 1 0 auto;
+  min-height: calc(100vh - 116px);
+}
+body:has(#loginView) .app-footer {
+  margin-top: auto !important;
+}
+.login-box {
+  width: min(760px, 100%) !important;
+  margin: 88px auto 0 !important;
+  text-align: center;
+}
+.login-box .import-page-title {
+  font-size: 25px;
+  margin-top: 0;
+}
+.login-box .import-lead {
+  max-width: none;
+  font-size: 10px;
+  margin-top: 9px;
+}
+.login-panel {
+  margin-top: 34px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+.login-panel .panel-body {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.google-button {
+  width: auto !important;
+  min-width: 270px;
+  min-height: 48px;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+@media (max-width: 639px) {
+  .app-main { padding: 16px 20px 0 !important; }
+  .photo-forms { grid-template-columns: 1fr !important; gap: 12px; }
+  .photo-card {
+    grid-template-columns: minmax(110px, 38%) minmax(0, 62%);
+  }
+  .photo-thumb {
+    margin: 10px 0 10px 10px !important;
+    aspect-ratio: 4 / 3 !important;
+  }
+  .photo-card-body {
+    padding: 12px 12px 12px 14px !important;
+  }
+  .photo-info { gap: 8px; }
+  .photo-info-row { display: block; }
+  .photo-info-row span { display: block; margin-bottom: 3px; }
+  .photo-info-row strong {
+    display: block;
+    max-width: 100%;
+    text-align: left;
+    white-space: normal;
+  }
+  .photo-card .field span { font-size: 8px; }
+  .photo-card .field input { height: 35px; font-size: 9px; }
+  .login-box { margin-top: 64px !important; }
+  .login-box .import-page-title { font-size: 21px; }
+  .google-button { min-width: 250px; }
+}
+@media (min-width: 640px) {
+  body:has(#loginView) .app-main { display:flex; flex-direction:column; }
+  body:has(#loginView) .login-box { flex:0 0 auto; }
+  body:has(#loginView) .app-footer { margin-top:auto !important; }
+}
+
+
+/* V1.6 — final visual refinement */
+.app-main { padding-top: 22px !important; }
+.import-panel .panel-body { padding-top: 0 !important; }
+
+/* Public upload cards: wider image, flush to the card edge, metadata stacked like Photo Center. */
+.photo-card {
+  grid-template-columns: minmax(0, 44%) minmax(0, 56%) !important;
+  border-color: #d9d9d9 !important;
+}
+.photo-thumb {
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 190px !important;
+  aspect-ratio: auto !important;
+  border-radius: 8px 0 0 8px !important;
+}
+.photo-card-body {
+  align-items: flex-start !important;
+  padding: 20px 20px 18px !important;
+}
+.photo-info { gap: 13px !important; }
+.photo-info-row {
+  display: block !important;
+  text-align: left !important;
+}
+.photo-info-row span {
+  display: block !important;
+  margin: 0 0 4px !important;
+  color: #777 !important;
+  font-size: 8px !important;
+}
+.photo-info-row strong {
+  display: block !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+.photo-info .field { margin: 0 !important; }
+.photo-info .field span { margin-bottom: 4px !important; }
+.photo-info .field input { height: 38px !important; }
+
+.upload-zone { margin-top: 14px !important; }
+.upload-zone small { margin-top: 6px !important; }
+
+@media (max-width: 639px) {
+  .app-main { padding-top: 12px !important; }
+  .photo-card {
+    grid-template-columns: minmax(0, 44%) minmax(0, 56%) !important;
+  }
+  .photo-thumb {
+    min-height: 170px !important;
+    border-radius: 8px 0 0 8px !important;
+  }
+  .photo-card-body { padding: 14px 14px 14px !important; }
+  .photo-info { gap: 9px !important; }
+  .photo-info-row span, .photo-card .field span { font-size: 7.5px !important; }
+  .photo-info-row strong { font-size: 9px !important; }
+  .photo-info .field input { height: 34px !important; font-size: 8.5px !important; }
+}
+
+
+/* V1.7 — definitive visual corrections */
+.app-header-title {
+  display: block !important;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: "Garet", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #111;
+  z-index: 2;
+}
+.header-actions { z-index: 3; }
+
+.photo-forms {
+  align-items: stretch;
+}
+.photo-card {
+  grid-template-columns: minmax(0, 48%) minmax(0, 52%) !important;
+  min-height: 0;
+}
+.photo-thumb {
+  margin: 0 !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  border-radius: 8px 0 0 8px !important;
+}
+.photo-card-body {
+  padding: 13px 16px 13px !important;
+  align-self: stretch;
+}
+.photo-info { gap: 9px !important; }
+.photo-info-row span {
+  margin-bottom: 2px !important;
+}
+.photo-info .field input {
+  height: 35px !important;
+}
+.upload-heading {
+  margin-top: 25px !important;
+  padding-top: 0 !important;
+}
+.upload-zone {
+  margin-top: 12px !important;
+  min-height: 120px !important;
+}
+
+@media (max-width: 639px) {
+  .app-header-title { display:none !important; }
+  .photo-card {
+    grid-template-columns: minmax(0, 48%) minmax(0, 52%) !important;
+  }
+  .photo-card-body {
+    padding: 11px 13px 11px !important;
+  }
+  .photo-info { gap: 7px !important; }
+  .photo-info .field input { height: 33px !important; }
+}
+
+/* Admin login: slightly shorter white area while keeping footer at the bottom. */
+body:has(#loginView) .app-main {
+  min-height: 0 !important;
+}
+body:has(#loginView) .login-box {
+  margin-top: 70px !important;
+  margin-bottom: 40px;
+}
+@media (max-width: 639px) {
+  body:has(#loginView) .login-box { margin-top: 52px !important; margin-bottom: 28px; }
+}
+
+
+/* V1.8 — focused final adjustments */
+/* Keep the admin header full-width; center only the page content below it. */
+body:has(#adminView) .app-main > #adminView {
+  width: min(1120px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+body:has(#loginView) .login-box {
+  width: min(620px, 100%);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+body:has(#loginView) .login-box .import-lead { margin-left: auto; margin-right: auto; }
+body:has(#loginView) .login-box .login-panel { text-align: center; }
+
+/* Give the photograph more room; metadata stays narrower and starts further right. */
+.photo-card {
+  grid-template-columns: minmax(0, 58%) minmax(210px, 42%) !important;
+}
+.photo-card-body {
+  padding: 12px 12px 12px 14px !important;
+}
+.photo-info { gap: 7px !important; }
+.photo-info .field input { height: 34px !important; }
+
+@media (max-width: 639px) {
+  .photo-card {
+    grid-template-columns: minmax(0, 58%) minmax(0, 42%) !important;
+  }
+  .photo-card-body { padding: 10px 10px 10px 11px !important; }
+  .photo-info { gap: 6px !important; }
+  .photo-info .field input { height: 32px !important; }
+}
+
+/* V1.9 — language/header, 3:2 photo framing, balanced metadata */
+.header-actions {
+  gap: 10px;
+}
+
+/* The image frame follows the requested 2160 × 1440 proportion (3:2). */
+.photo-thumb,
+.review-image {
+  aspect-ratio: 3 / 2 !important;
+}
+.photo-thumb img,
+.review-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Public photo metadata: leave a little breathing room after photographer/Instagram. */
+.photo-info .field:first-of-type {
+  margin-top: 9px !important;
+}
+
+/* Internal administration: keep the header untouched, center the content below it. */
+body:has(#adminView) .app-main > #adminView {
+  width: min(1120px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Admin photo metadata mirrors the public card rhythm: identity first, aircraft details below. */
+.review-body .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+  row-gap: 12px;
+}
+.review-body .grid .field:nth-child(3),
+.review-body .grid .field:nth-child(4),
+.review-body .grid .field:nth-child(5) {
+  margin-top: 7px;
+}
+.review-body .grid .field.full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 639px) {
+  .review-body .grid {
+    grid-template-columns: 1fr;
+  }
+  .review-body .grid .field:nth-child(3),
+  .review-body .grid .field:nth-child(4),
+  .review-body .grid .field:nth-child(5) {
+    margin-top: 4px;
+  }
+  .review-body .grid .field.full {
+    grid-column: auto;
+  }
+}
+
+
+/* Instagram: fixed @ prefix, username remains empty until entered. */
+.instagram-input-wrap { position:relative; display:flex; align-items:center; }
+.instagram-input-wrap .instagram-prefix { position:absolute; left:11px; top:50%; transform:translateY(-50%); font-size:10px; color:#777; pointer-events:none; z-index:1; }
+.instagram-input-wrap input { padding-left:22px; }
+@media (max-width:639px) { .instagram-input-wrap .instagram-prefix { left:9px; } .instagram-input-wrap input { padding-left:19px; } }
+
+/* V1.18 — admin alignment, mobile header menu, compact empty review state and submit feedback */
+body:has(#adminView) .app-main > #adminView {
+  width: 100% !important;
+  max-width: none !important;
+}
+body:has(#adminView) .app-main {
+  max-width: 1280px !important;
+}
+body:has(#adminView) .detail-empty {
+  min-height: 250px !important;
+}
+body:has(#adminView) .import-intro {
+  margin-bottom: 18px;
+}
+body:has(#adminView) #adminNotice {
+  margin-bottom: 12px;
+}
+
+.submit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.submit-row .import-actions {
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+.submit-row #progressBox {
+  margin: 0;
+  flex: 0 1 auto;
+  min-width: 180px;
+}
+
+.mobile-menu-button,
+.mobile-menu { display:none; }
+
+@media (max-width: 639px) {
+  .desktop-header-actions { display:none !important; }
+  .mobile-menu-button {
+    width: 36px;
+    height: 36px;
+    padding: 7px 6px;
+    border: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .mobile-menu-button span {
+    display:block;
+    width: 22px;
+    height: 2px;
+    margin: 0 auto;
+    background:#000;
+    border-radius:2px;
+  }
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-start;
+    padding: 78px 18px 18px;
+    background: rgba(0,0,0,.18);
+  }
+  .mobile-menu.hidden { display:none !important; }
+  .mobile-menu-card {
+    width: min(230px, calc(100vw - 36px));
+    background:#fff;
+    border:1px solid #000;
+    border-radius:10px;
+    padding:10px;
+    box-shadow:0 8px 30px rgba(0,0,0,.12);
+  }
+  .mobile-menu-language {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+    padding:3px;
+    border:1px solid #e5e5e5;
+    border-radius:8px;
+    background:#fafafa;
+  }
+  .mobile-menu-language .header-language-button {
+    width:100%;
+  }
+  .mobile-admin-link {
+    display:flex;
+    align-items:center;
+    min-height:38px;
+    margin-top:7px;
+    padding:0 11px;
+    border-radius:7px;
+    color:#000;
+    text-decoration:none;
+    font-size:9px;
+    font-weight:600;
+  }
+  .mobile-admin-link:hover { background:#f7f7f7; }
+  .submit-row {
+    align-items:stretch;
+    gap:8px;
+  }
+  .submit-row .import-actions {
+    flex: 0 0 auto;
+  }
+  .submit-row #progressBox {
+    min-width:0;
+    flex:1 1 auto;
+  }
+}
+
+/* V1.18.1 refinement */
+body:has(#adminView) .app-main {
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+body:has(#adminView) .admin-layout > section:first-child .panel-head {
+  border-bottom: 0;
+}
+
+.danger-outline{border-color:#d7a0a0!important;color:#9a2d2d!important;background:#fff!important}.danger-outline:hover{border-color:#9a2d2d!important;background:#fff5f5!important}
+
+
+/* V1.21 — mobile header/menu, legal consent link and centered admin login */
+.consent-link { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.consent-link:hover { color:#000; }
+body:has(#loginView) .app-main { display:flex; flex-direction:column; flex:1 1 auto; min-height:calc(100vh - 116px) !important; }
+body:has(#loginView) .login-box { margin-top:auto !important; margin-bottom:auto !important; }
+@media (max-width:639px) {
+  .app-header-inner { min-height:96px !important; }
+  .brand-logo { width:205px !important; }
+  .mobile-menu { padding:90px 18px 18px; }
+  .mobile-menu-card { width:min(250px, calc(100vw - 36px)); }
+  .mobile-menu-language { gap:4px; padding:4px; }
+  .mobile-menu-language .header-language-button { min-width:0 !important; height:38px !important; padding:0 !important; border-radius:6px; }
+  .mobile-admin-link { width:100%; min-height:38px; height:38px; margin-top:8px; padding:0 10px; justify-content:center; border:1px solid #111; border-radius:6px; background:#fff; font-size:9px; font-weight:600; box-sizing:border-box; }
+  .mobile-admin-link:hover { background:#f7f7f7; }
+  body:has(#loginView) .app-main { min-height:calc(100vh - 96px) !important; padding:16px 20px 0 !important; }
+  body:has(#loginView) .login-box { width:100% !important; margin-top:auto !important; margin-bottom:auto !important; }
+  body:has(#loginView) .app-footer { margin-top:18px !important; }
+}
+@media (max-width:430px) {
+  .brand-logo { width:205px !important; }
+}
+
+
+/* V1.22 — production upload via R2 binding, mobile refinements */
+@media (max-width:639px) {
+  .app-header-inner { min-height:86px !important; }
+  .brand-logo { width:190px !important; }
+  .mobile-menu { padding:78px 18px 18px; }
+  .mobile-menu-language { grid-template-columns:1fr 1fr; gap:4px; padding:0; border:0; background:transparent; }
+  .mobile-menu-language .header-language-button { height:42px !important; min-width:0 !important; border:1px solid #111; border-radius:6px !important; background:#fff; color:#111; padding:0 !important; }
+  .mobile-menu-language .header-language-button.active { background:#111; color:#fff; }
+  .mobile-admin-link { height:42px !important; min-height:42px !important; margin-top:8px; border:1px solid #111; border-radius:6px; background:#fff; font-size:9px; font-weight:600; }
+  body:has(#adminView) .detail-empty p { display:none !important; }
+}
+@media (max-width:430px) {
+  .brand-logo { width:190px !important; }
+}
+body:has(#adminView) #adminNotice { width:100%; }

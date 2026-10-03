@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>LV-FA | Import – Administrace</title>
+  <script src="https://cdn.tailwindcss.com"></script><link rel="icon" type="image/png" href="/assets/LV-FA_ICON.png"><link rel="apple-touch-icon" href="/assets/LV-FA_ICON.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="border-b border-black bg-white">
+    <div class="app-header-shell">
+      <div class="app-header-inner relative flex min-h-[116px] items-center justify-between gap-6">
+        <img src="/assets/logo.svg" alt="Letecký vykřičník & FlyAlert" class="brand-logo">
+        <h1 class="app-header-title">Import fotografií</h1>
+        <a class="header-login" href="/">Veřejná část</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="app-main">
+    <div id="loginView" class="login-box">
+      <h2 class="import-page-title">Interní administrace</h2>
+      <p class="import-lead">Přihlášení je povoleno pouze pro autorizovaný Google účet.</p>
+      <section class="panel login-panel">
+        <div class="panel-body">
+          <button id="googleLogin" class="primary-button google-button" type="button">Přihlásit se přes Google</button>
+          <div id="loginNotice" class="notice hidden"></div>
+        </div>
+      </section>
+    </div>
+
+    <div id="adminView" class="hidden">
+      <div class="import-intro">
+        <div>
+          <h2 class="import-page-title">Příchozí fotografie</h2>
+        </div>
+      </div>
+      <div id="adminNotice" class="notice hidden"></div>
+      <div id="stats" class="stats"></div>
+
+      <div class="admin-layout">
+        <section class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">Příchozí</div><h2 class="panel-title">Zásilky</h2></div>
+            <button id="refresh" class="secondary-button" type="button">Obnovit</button>
+          </div>
+          <div id="submissionList" class="submission-list"></div>
+        </section>
+
+        <section class="panel">
+          <div id="detailEmpty" class="panel-body detail-empty">
+            <div class="eyebrow">Kontrola</div><h2>Vyber zásilku</h2><p class="muted">Po otevření zásilky se zobrazí všechny fotografie a jejich metadata.</p>
+          </div>
+          <div id="detail" class="hidden">
+            <div class="panel-head">
+              <div><div class="eyebrow">Kontrola zásilky</div><h2 id="detailName" class="panel-title"></h2><div id="detailMeta" class="muted"></div></div>
+              <span id="detailStatus" class="status"></span>
+            </div>
+            <div class="panel-body">
+              <div id="detailActions" class="import-actions"></div>
+              <div id="detailGallery" class="admin-gallery"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="app-footer">© Letecký vykřičník &amp; FlyAlert - Import fotografií
+      <div class="brand-footer-bar" aria-label="Letecký vykřičník & FlyAlert">
+        <div class="brand-footer-inner">
+          <img class="brand-footer-logo brand-footer-logo-lv" src="/assets/LV_LOGO_WHITE.svg" alt="Letecký vykřičník">
+          <img class="brand-footer-logo brand-footer-logo-fa" src="/assets/FA_LOGO_WHITE.svg" alt="FlyAlert">
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>

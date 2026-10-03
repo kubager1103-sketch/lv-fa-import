@@ -1,0 +1,14 @@
+{
+  "name": "lv-fa-import",
+  "version": "1.22.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.147.0"
+  }
+}

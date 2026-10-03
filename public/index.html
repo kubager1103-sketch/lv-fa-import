@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>LV-FA | Import</title>
+  <script src="https://cdn.tailwindcss.com"></script><link rel="icon" type="image/png" href="/assets/LV-FA_ICON.png">
+  <link rel="apple-touch-icon" href="/assets/LV-FA_ICON.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="border-b border-black bg-white">
+    <div class="mx-auto max-w-[1280px] px-5 sm:px-8">
+      <div class="app-header-inner relative flex min-h-[116px] items-center justify-between gap-6">
+        <img src="/assets/logo.svg" alt="Letecký vykřičník & FlyAlert" class="brand-logo">
+        <h1 class="app-header-title" id="headerTitle">Import fotografií</h1>
+        <div class="header-actions desktop-header-actions">
+          <a class="header-login" href="/admin" id="adminLink">Administrace</a>
+          <div class="header-language" aria-label="Jazyk">
+            <button id="langCs" class="header-language-button active" type="button" aria-pressed="true">CZ</button>
+            <button id="langEn" class="header-language-button" type="button" aria-pressed="false">EN</button>
+          </div>
+        </div>
+        <button id="mobileMenuButton" class="mobile-menu-button" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="publicMain" class="app-main mx-auto max-w-[1280px] px-5 py-7 sm:px-8">
+    <div id="publicNotice" class="notice hidden mb-5"></div>
+
+    <section class="panel import-panel" aria-label="Odeslat fotografie">
+      <div class="panel-head">
+        <h2 id="pageTitle" class="panel-title">Vaše údaje</h2>
+        <button id="clearUpload" class="secondary-button import-clear-button" type="button">Vyčistit</button>
+      </div>
+      <div class="panel-body">
+        <div class="import-contact-grid">
+          <label class="field"><span id="nameLabel">Jméno *</span><input id="senderName" required maxlength="120" autocomplete="name"></label>
+          <label class="field"><span id="emailLabel">E-mail *</span><input id="senderEmail" type="email" required maxlength="180" autocomplete="email"></label>
+          <label class="field"><span id="instagramLabel">Instagram</span><div class="instagram-input-wrap"><span class="instagram-prefix" aria-hidden="true">@</span><input id="senderInstagram" maxlength="159" autocomplete="off"></div></label>
+        </div>
+
+        <div class="upload-heading">
+          <div>
+            <h3 id="filesTitle" class="upload-title">Nahrát fotografie</h3>
+          </div>
+          <span id="uploadCounter" class="upload-counter">0 / 20</span>
+        </div>
+
+        <div id="dropZone" class="upload-zone">
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif" multiple hidden>
+          <div class="upload-arrow">↑</div>
+          <strong id="dropTitle">Kliknutím vyber fotografii nebo ji přetáhni sem</strong>
+          <small id="dropHelp">Maximální velikost jedné fotografie: 10 MB · Maximálně 20 fotografií</small>
+        </div>
+
+        <div id="photoForms" class="photo-forms"></div>
+
+        <div class="consent-box">
+          <label class="consent-row">
+            <input id="consent" type="checkbox">
+            <span id="consentText">Potvrzuji, že jsem vlastníkem práv k nahraným fotografiím a souhlasím s jejich použitím pro potřeby projektů Letecký vykřičník a FlyAlert. Zároveň souhlasím se <a href="/terms-and-privacy.pdf" target="_blank" rel="noopener" class="consent-link">zpracováním osobních údajů a podmínkami užití služby</a>.</span>
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <div class="import-actions">
+            <button id="submitUpload" class="primary-button import-submit" type="button" disabled>Odeslat</button>
+          </div>
+          <div id="progressBox" class="notice hidden"></div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu hidden" aria-hidden="true">
+          <div class="mobile-menu-card">
+            <div class="mobile-menu-language" aria-label="Jazyk">
+              <button id="mobileLangCs" class="header-language-button active" type="button">CZ</button>
+              <button id="mobileLangEn" class="header-language-button" type="button">EN</button>
+            </div>
+            <a class="mobile-admin-link" href="/admin" id="mobileAdminLink">Administrace</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">© Letecký vykřičník &amp; FlyAlert - <span id="footerCredit">Import fotografií</span>
+      <div class="brand-footer-bar" aria-label="Letecký vykřičník & FlyAlert">
+        <div class="brand-footer-inner">
+          <img class="brand-footer-logo brand-footer-logo-lv" src="/assets/LV_LOGO_WHITE.svg" alt="Letecký vykřičník">
+          <img class="brand-footer-logo brand-footer-logo-fa" src="/assets/FA_LOGO_WHITE.svg" alt="FlyAlert">
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="/app.js?v=1.22.0"></script>
+</body>
+</html>

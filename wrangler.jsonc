@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lv-fa-import",
+  "compatibility_date": "2026-10-01",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "public"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lvfa_import",
+      "database_id": "3033f2ce-87d3-4d10-94ec-c6b5279c0048"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMPORT_BUCKET",
+      "bucket_name": "lv-fa-import"
+    }
+  ]
+}
